@@ -21,7 +21,7 @@ class App extends Component {
     }
 
     getSampleText() {
-        axios.get('//hipsterjesus.com/api?paras=' + this.state.par + '&html=' + this.state.html)
+        axios.get('http://hipsterjesus.com/api?paras=' + this.state.par + '&html=' + this.state.html)
             .then((response) => {
                 this.setState({ text: response.data.text }, function() {
                     // console.log(this.state)
@@ -57,8 +57,8 @@ class App extends Component {
             /label> <
             Text value = { this.state.par }
             onChange = { this.showPar.bind(this) }
-            /> <
-            /div> <
+            /> < /
+            div > <
             div className = 'form-group' >
             <
             label >
@@ -67,14 +67,14 @@ class App extends Component {
             /label> <
             Select value = { this.state.html }
             onChange = { this.showHtml.bind(this) }
-            /> <
-            /div> <
+            /> < /
+            div > <
             /form> <
             br / >
             <
             Output value = { this.state.text }
-            /> <
-            /div>
+            /> < /
+            div >
         )
     }
 }
