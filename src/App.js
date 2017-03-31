@@ -5,6 +5,7 @@ import axios from 'axios'
 import Output from './Componentes/Output'
 import Select from './Componentes/Controles/Select'
 import Text from './Componentes/Controles/Text'
+import Tab from './Componentes/Controles/Tab'
 
 class App extends Component {
   constructor (props) {
@@ -61,6 +62,7 @@ class App extends Component {
         </form>
         <br/>
         <Output value={this.state.text} />
+        <Tab />
       </div>
     )
   }
