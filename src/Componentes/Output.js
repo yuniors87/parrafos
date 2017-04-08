@@ -8,15 +8,20 @@ class Output extends Component {
     }
   }
 
-  copiar () {
-    document.querySelector('input').select()
-    document.execCommand('copy')
+  copiar (e) {
+    let contenido = this.props.value
+    console.log(contenido + ' de var')
+    this.setState({value: contenido})
+    console.log(this.state.value + ' de est')
+    // document.querySelector('input').select()
+    // document.execCommand('copy')
+
   }
 
   render () {
     return (
-      <div classID='salida' className='well output' onClick={this.copiar.bind(this)}>
-        <p>
+      <div classID='salida' className='well output'>
+        <p onClick={this.copiar.bind(this)}>
           {this.props.value}
         </p>
       </div>

@@ -6,10 +6,11 @@ import NavDropdown from 'react-bootstrap/lib/NavDropdown'
 import MenuItem from 'react-bootstrap/lib/MenuItem'
 
 class Menu extends Component {
-  constructor () {
-    super()
+  constructor (props) {
+    super(props)
     this.state = {
-      activo: false
+      activo: false,
+      usuario: props.value
     }
   }
 
@@ -38,7 +39,7 @@ class Menu extends Component {
             </NavItem>
           </Nav>
           <Nav pullRight>
-            <NavDropdown title='Opciones' id='basic-nav-dropdown'>
+            <NavDropdown title={this.state.usuario} id='basic-nav-dropdown'>
               <MenuItem> Perfil
               </MenuItem>
               <MenuItem> Cambiar contraseña

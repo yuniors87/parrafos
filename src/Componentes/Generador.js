@@ -9,20 +9,20 @@ class Generador extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      par: 4,
+      par: 0,
       html: false,
-      text: ''
+      cont: '----'
     }
   }
-  componentWillMount () {
-    this.getSampleText()
-  }
+  /*componentDidMount () {
+     this.getSampleText()
+   }*/
 
   getSampleText () {
     axios.get('http://hipsterjesus.com/api?paras=' + this.state.par + '&html=' + this.state.html)
       .then((response) => {
-        this.setState({ text: response.data.text }, function () {
-          // console.log(this.state)
+        this.setState({ cont: response.data.text }, function () {
+          console.log(this.state.cont + 'en')
         })
       })
       .catch((err) => {
@@ -36,6 +36,7 @@ class Generador extends Component {
 
   showPar (e) {
     this.setState({ par: e }, this.getSampleText)
+    console.log(this.state.cont + 'en')
   }
 
   render () {
@@ -58,7 +59,7 @@ class Generador extends Component {
           </div>
         </form>
         <br/>
-        <Output value={this.state.text} />
+        <Output value={this.state.cont} />
       </div>
     )
   }
