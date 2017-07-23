@@ -6,7 +6,7 @@ import Select from './Controles/Select'
 import Text from './Controles/Text'
 
 class Generador extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       par: 0,
@@ -18,11 +18,19 @@ class Generador extends Component {
      this.getSampleText()
    }*/
 
-  getSampleText () {
-    axios.get('http://hipsterjesus.com/api?paras=' + this.state.par + '&html=' + this.state.html)
+  getSampleText() {
+    //    axios.get('http://hipsterjesus.com/api?paras=' + this.state.par + '&html=' + this.state.html)
+    axios.get(`https://baconipsum.com/api/?type=all-meat&paras=${this.state.par}&start-with-lorem=1`)
       .then((response) => {
-        this.setState({ cont: response.data.text }, function () {
-          console.log(this.state.cont + 'en')
+        let devolver = ''
+        response.data.map((e) => {
+          if (this.state.html) {
+            e = `<p>${e}</p>`
+          }
+          devolver += e + `\n \n`
+          return devolver
+        })
+        this.setState({ cont: devolver }, function () {
         })
       })
       .catch((err) => {
@@ -30,20 +38,19 @@ class Generador extends Component {
       })
   }
 
-  showHtml (e) {
+  showHtml(e) {
     this.setState({ html: e }, this.getSampleText)
   }
 
-  showPar (e) {
+  showPar(e) {
     this.setState({ par: e }, this.getSampleText)
-    console.log(this.state.cont + 'en')
   }
 
-  render () {
+  render() {
     return (
       <div>
         <h1 className='text-center'>Generado de texto en React JS</h1>
-        <hr/>
+        <hr />
         <form className='form-inline'>
           <div className='form-group'>
             <label>
@@ -58,7 +65,7 @@ class Generador extends Component {
             <Select value={this.state.html} onChange={this.showHtml.bind(this)} />
           </div>
         </form>
-        <br/>
+        <br />
         <Output value={this.state.cont} />
       </div>
     )

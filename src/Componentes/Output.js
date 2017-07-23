@@ -1,29 +1,27 @@
 import React, { Component } from 'react'
 
 class Output extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       value: props.value
     }
   }
 
-  copiar (e) {
-    let contenido = this.props.value
-    console.log(contenido + ' de var')
-    this.setState({value: contenido})
-    console.log(this.state.value + ' de est')
-    // document.querySelector('input').select()
-    // document.execCommand('copy')
+  copiar(e) {
 
   }
 
-  render () {
+
+  render() {
     return (
-      <div classID='salida' className='well output'>
-        <p onClick={this.copiar.bind(this)}>
-          {this.props.value}
-        </p>
+      <div classID='salida' className='well output' data-toggle="tooltip" title="Click to copy"
+        onClick={this.copiar.bind(this)} >
+        <p className='prs'>
+          {this.props.value.split('\n').map((item, key) => {
+            return <span key={key}>{item}<br /></span>
+          })}
+        </p >
       </div>
     )
   }
