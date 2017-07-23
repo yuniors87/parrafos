@@ -19,7 +19,6 @@ class Generador extends Component {
    }*/
 
   getSampleText() {
-    //    axios.get('http://hipsterjesus.com/api?paras=' + this.state.par + '&html=' + this.state.html)
     axios.get(`https://baconipsum.com/api/?type=all-meat&paras=${this.state.par}&start-with-lorem=1`)
       .then((response) => {
         let devolver = ''
